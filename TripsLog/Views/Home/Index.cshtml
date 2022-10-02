@@ -1,0 +1,42 @@
+﻿@model List<Trip>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<a asp-controller="Trip" asp-action="Index" style="text-decoration:none" class="py-4">Add Trip</a>
+ 
+<table id="tblData" class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>Destination</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Accommodations</th>
+            <th>Things To Do</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="50%">
+                   @obj.Destination
+                </td>
+                <td width="30%">
+                     @obj.StartDate
+                </td>
+                <td width="30%">
+                    @obj.EndDate
+                </td>
+                <td width="30%">
+                    @obj.Accommodations
+                </td>
+                <td width="30%">
+                    @obj.ThingsToDo
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

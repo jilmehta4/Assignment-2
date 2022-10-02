@@ -1,0 +1,28 @@
+﻿@model Trip
+
+@{
+    ViewData["subhead"] = "Add Info for The Ritz";
+}
+
+<form method="post" asp-controller="Trip" asp-action="Page2">
+    <div class="form-group">
+        <div><label>Phone Number:</label></div>
+        <div>
+            <input type="text" asp-for="AccommodationPhone" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div><label>Email Address</label></div>
+        <div>
+            <input type="text" asp-for="AccommodationEmail" class="form-control" />
+        </div>
+    </div>
+    <div class="row pt-2 btn-group">
+        <div class="col-sm-4">
+            <button type="submit" class="btn btn-secondary">Next</button>
+        </div>
+        <div class="col-sm-4">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </div>
+</form>
