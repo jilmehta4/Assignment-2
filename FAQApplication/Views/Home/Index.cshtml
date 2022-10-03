@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FAQ>
+@{
+    //ViewData["Title"] = "NFL Teams";
+    string Active(string filter, string selected)
+    {
+        return (filter.ToLower() == selected.ToLower()) ? "active" : "";
+    }
+}
+
+<nav class="navbar navbar-expand-sm justify-content-center">
+    <ul class="navbar-nav">
+        @foreach (Topic top in ViewBag.Topics)
+        {
+            <li class="nav-item">
+                <a asp-action="Index"
+               asp-route-activeCat="@ViewBag.ActiveCat"
+               asp-route-activeTop="@top.TopicID"
+               class="list-group-item @Active(top.TopicID,
+                                           ViewBag.ActiveTop)">
+                    @top.TopicName
+                </a>
+            </li>
+
+        }
+
+
+        @* <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">All FAQs</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Bootstrap</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">C#</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">javaScript</a>
+        </li>*@
+    </ul>
+
+
+</nav>
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="list-group">
+            @foreach (Category cat in ViewBag.Categories)
+            {
+                <a asp-action="Index"
+               asp-route-activeCat="@cat.CategoryID"
+               asp-route-activeTop="@ViewBag.ActiveTop"
+               class="list-group-item @Active(cat.CategoryID,
+                                           ViewBag.ActiveCat)">
+                    @cat.CategoryName
+                </a>
+            }
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <ul class="list-group">
+            @foreach (FAQ faq in Model)
+            {
+                <li class="list-group-item">
+                    <p><b>@faq.Question</b></p><p>@faq.Answer</p>
+                    <p>Topic: @faq.Topic.TopicName</p><p>Category: @faq.Category.CategoryName</p>
+
+                </li>
+            }
+        </ul>
+    </div>
+</div>
