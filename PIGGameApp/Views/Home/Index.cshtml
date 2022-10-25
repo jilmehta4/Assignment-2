@@ -1,0 +1,50 @@
+﻿@model PIGGameApp.Models.Game
+
+<header style="--bs-bg-opacity: .5" class="mt-4 p-5 bg-secondary text-center rounded">
+    <h1>Let's Play PIG!</h1>
+</header>
+<div class="row m-4">
+    <div class="col-sm-7 border">
+        <div class="row border-bottom p-4">
+            <div class="col">
+                <div>Player 1: @Model.Player1Total</div>
+                <div>Player 2: @Model.Player2Total</div>
+            </div>
+            <div class="col">
+                <a asp-action="NewGame" asp-controller="Home" class="btn btn-outline-secondary">New Game</a>
+            </div>
+        </div>
+
+        <div class="border-top-0">
+            <p><b>Player 2's turn</b></p>
+            <div class="row">
+                <div class="col-sm-1">
+                    <a asp-action="Roll" asp-controller="Home" class="btn btn-secondary">Roll</a>
+                </div>
+                <div class="col-sm-2">
+                    <a asp-action="Hold" asp-controller="Home" class="btn btn-outline-secondary">Hold</a>
+                </div>
+                <div class="col justify-content-end">
+                    @if(TempData["Roll"]==null){
+                        <p> Die : 0</p>
+                    }
+                    else{
+                        <p> Die : @TempData["Roll"]</p>
+                    }
+                    <p> Total : @Model.Total</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-5 border">
+        <p class="border-bottom p-2">First player to 20 wins.</p>
+        <p class="border-bottom p-2">Players take turns rolling the die.</p>
+        <p class="border-bottom p-2">Turn ends when player rolls a 1 or chooses to hold.</p>
+        <p class="border-bottom p-2">If player rolls a 1. they lose all points earned during that turn.</p>
+        <p class="border-bottom p-2">If player holds. points earned during that turn are added to their total.</p>
+    </div>
+</div>
+<footer class="mt-4 p-5 bg-dark text-center text-white rounded">
+    <h2>Player 2 wins!</h2>
+</footer>
